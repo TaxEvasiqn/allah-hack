@@ -14,7 +14,7 @@
   "environment": "client",
   "entrypoints": {
     "meteor": [
-      "dummy.addon.template.TemplateAddon"
+      "me.taxevasion.balls.Balls"
     ]
   },
   "mixins": [

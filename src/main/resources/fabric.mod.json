@@ -1,27 +1,27 @@
 {
   "schemaVersion": 1,
-  "id": "addon-template",
+  "id": "allah-addon",
   "version": "${version}",
-  "name": "Addon Template",
-  "description": "An addon template for the Meteor addons.",
+  "name": "AllahHack",
+  "description": "gives you magic powers by the will of allah",
   "authors": [
-    "seasnail8169"
+    "Tax Evasion"
   ],
   "contact": {
-    "repo": "https://github.com/MeteorDevelopment/meteor-addon-template"
+    "repo": "https://github.com/TaxEvasiqn/balls"
   },
   "icon": "assets/template/icon.png",
   "environment": "client",
   "entrypoints": {
     "meteor": [
-      "me.taxevasion.balls.Balls"
+      "uwu.taxevasion.allahhack.Allah"
     ]
   },
   "mixins": [
     "template.mixins.json"
   ],
   "custom": {
-    "meteor-client:color": "225,25,25"
+    "meteor-client:color": "255,0,255"
   },
   "depends": {
     "java": ">=17",

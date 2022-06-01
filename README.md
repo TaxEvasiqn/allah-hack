@@ -1,6 +1,6 @@
 # allah hack
 
-coffee paste except badly coded but theres some cool new stuff
+coffee client rewritten shitly but theres some cool new stuff that barely works
 
 v literally you when you use this v
 

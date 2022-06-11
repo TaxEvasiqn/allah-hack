@@ -10,7 +10,7 @@
   "contact": {
     "repo": "https://github.com/TaxEvasiqn/allah-hack"
   },
-  "icon": "assets/template/icon.png",
+  "icon": "assets/balls/icon.png",
   "environment": "client",
   "entrypoints": {
     "meteor": [
@@ -18,7 +18,7 @@
     ]
   },
   "mixins": [
-    "template.mixins.json"
+    "balls.mixins.json"
   ],
   "custom": {
     "meteor-client:color": "255,0,255"

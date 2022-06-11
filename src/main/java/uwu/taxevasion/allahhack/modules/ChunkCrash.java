@@ -55,12 +55,12 @@ public class ChunkCrash extends Module {
                 if (mc.getNetworkHandler() == null) return;
                 for (int i = 0; i < amount.get(); i++) {
                     Vec3d cpos = pickRandomPos();
-                    PlayerInteractBlockC2SPacket PACKET = new PlayerInteractBlockC2SPacket(Hand.MAIN_HAND, new BlockHitResult(cpos, Direction.DOWN, new BlockPos(cpos), false));
+                    PlayerInteractBlockC2SPacket PACKET = new PlayerInteractBlockC2SPacket(Hand.MAIN_HAND, new BlockHitResult(cpos, Direction.DOWN, new BlockPos(cpos), false), 0);
                     mc.getNetworkHandler().sendPacket(PACKET);
                 }
             }
             case OOB -> {
-                PlayerInteractBlockC2SPacket oob = new PlayerInteractBlockC2SPacket(Hand.MAIN_HAND, new BlockHitResult(new Vec3d(-1, -1, -1), Direction.UP, new BlockPos(Integer.MAX_VALUE, -1, Integer.MIN_VALUE), true));
+                PlayerInteractBlockC2SPacket oob = new PlayerInteractBlockC2SPacket(Hand.MAIN_HAND, new BlockHitResult(new Vec3d(-1, -1, -1), Direction.UP, new BlockPos(Integer.MAX_VALUE, -1, Integer.MIN_VALUE), true), 0);
                 mc.getNetworkHandler().sendPacket(oob);
             }
             case CREATIVE -> {

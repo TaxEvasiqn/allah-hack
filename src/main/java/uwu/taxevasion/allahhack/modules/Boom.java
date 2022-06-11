@@ -61,7 +61,7 @@ public class Boom extends Module {
                 BlockPos pos = new BlockPos(owo);
                 Vec3d sex = mc.player.getRotationVector().multiply(speed.get());
                 BlockHitResult bhr = new BlockHitResult(mc.player.getEyePos(), Direction.DOWN, new BlockPos(mc.player.getEyePos()), true);
-                PlayerInteractBlockC2SPacket use = new PlayerInteractBlockC2SPacket(Hand.MAIN_HAND, bhr);
+                PlayerInteractBlockC2SPacket use = new PlayerInteractBlockC2SPacket(Hand.MAIN_HAND, bhr, 0);
                 CreativeInventoryActionC2SPacket clr = new CreativeInventoryActionC2SPacket(36 + mc.player.getInventory().selectedSlot, new ItemStack(Items.AIR));
                 switch (mode.get()) {
                     case Instant -> {

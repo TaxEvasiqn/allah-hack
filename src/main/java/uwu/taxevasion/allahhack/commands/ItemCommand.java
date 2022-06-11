@@ -48,14 +48,5 @@ public class ItemCommand extends Command {
             mc.getNetworkHandler().sendPacket(elgato);
             return SINGLE_SUCCESS;
         }));
-
-        builder.then(literal("OpBook").executes(ctx -> {
-            ItemStack book = new ItemStack(Items.WRITTEN_BOOK);
-            NbtCompound tag = new NbtCompound();
-            book.setSubNbt("EntityTag", tag);
-            CreativeInventoryActionC2SPacket elbook = new CreativeInventoryActionC2SPacket(36 + mc.player.getInventory().selectedSlot, book);
-            mc.getNetworkHandler().sendPacket(elbook);
-            return SINGLE_SUCCESS;
-        }));
     }
 }

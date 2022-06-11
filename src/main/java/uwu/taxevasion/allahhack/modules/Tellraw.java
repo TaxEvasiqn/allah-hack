@@ -1,9 +1,18 @@
 package uwu.taxevasion.allahhack.modules;
 
-import meteordevelopment.meteorclient.settings.*;
+import meteordevelopment.meteorclient.gui.GuiTheme;
+import meteordevelopment.meteorclient.gui.widgets.WWidget;
+import meteordevelopment.meteorclient.gui.widgets.containers.WHorizontalList;
+import meteordevelopment.meteorclient.gui.widgets.pressable.WButton;
+import meteordevelopment.meteorclient.settings.BoolSetting;
+import meteordevelopment.meteorclient.settings.ColorSetting;
+import meteordevelopment.meteorclient.settings.Setting;
+import meteordevelopment.meteorclient.settings.SettingGroup;
+import meteordevelopment.meteorclient.settings.StringSetting;
 import meteordevelopment.meteorclient.systems.modules.Module;
-import meteordevelopment.meteorclient.utils.misc.Keybind;
+import meteordevelopment.meteorclient.utils.render.color.SettingColor;
 import uwu.taxevasion.allahhack.Allah;
+
 
 public class Tellraw extends Module {
     private final SettingGroup sgGeneral = settings.getDefaultGroup();
@@ -21,10 +30,10 @@ public class Tellraw extends Module {
         .build()
     );
 
-    private final Setting<String> color = sgGeneral.add(new StringSetting.Builder()
+    private final Setting<SettingColor> color = sgGeneral.add(new ColorSetting.Builder()
         .name("color")
-        .description("color or hex code")
-        .defaultValue("white")
+        .description("color of text")
+        .defaultValue(new SettingColor())
         .build()
     );
 
@@ -51,24 +60,56 @@ public class Tellraw extends Module {
 
     private final Setting<Boolean> obf = sgGeneral.add(new BoolSetting.Builder()
         .name("obfuscate")
-        .description("makes it into the allah language (why would you want this)")
+        .description("makes it into the allah language")
         .defaultValue(false)
         .build()
     );
 
-    private final Setting<Keybind> keybind = sgGeneral.add(new KeybindSetting.Builder()
-        .name("print")
-        .description("press to print the tellraw")
-        .action(this::print)
+    private final Setting<Boolean> str = sgGeneral.add(new BoolSetting.Builder()
+        .name("strikethrough")
+        .description("i didnt even know this existed")
+        .defaultValue(false)
         .build()
     );
 
     public Tellraw() {
-        super(Allah.CATEGORY, "Tellraw", "allah sends an official message in chat (needs op)");
+        super(Allah.CATEGORY, "tellraw", "IT FUCKING WORKS HAHAHAHAHHAH");
     }
 
-    private void print() {
-        String cmd = "/tellraw " + players.get() + " " + "{\"bold\":" + bold.get() + "\"color\":\"" + color.get() + ",\"italic\":" + italic.get() + ",\"obfuscated\":" + obf.get() + ",\"text\":\"" + msg.get() + ",\"underline\":" + underline.get() + "}";
-        mc.player.sendChatMessage(cmd);
+    public String red() { //apparently this is good code even though to me it looks horrifically long
+        if (color.get().r < 16) {
+            return "0" + Integer.toHexString(color.get().r);
+        } else {
+            return Integer.toHexString(color.get().r);
+        }
+    }
+
+    public String green() {
+        if (color.get().g < 16) {
+            return "0" + Integer.toHexString(color.get().g);
+        } else {
+            return Integer.toHexString(color.get().g);
+        }
+    }
+
+    public String blue() {
+        if (color.get().b < 16) {
+            return "0" + Integer.toHexString(color.get().b);
+        } else {
+            return Integer.toHexString(color.get().b);
+        }
+    }
+
+    @Override
+    public WWidget getWidget(GuiTheme theme) {
+        WHorizontalList what = theme.horizontalList();
+        WButton print = what.add(theme.button("Print")).widget();
+        print.action = () -> {
+            String cmd = ("/tellraw " + players.get() + " {\"bold\":" + bold.get() + ",\"color\":\"#" + red() + green() + blue() + "\",\"italic\":" + italic.get() + ",\"strikethrough\":" + str.get() + ",\"obfuscated\":" + obf.get() + ",\"text\":\"" + msg.get() + "\",\"underlined\":" + underline.get() + "}");
+            if (isActive()) {
+                mc.player.sendChatMessage(cmd);
+            }
+        };
+        return what;
     }
 }

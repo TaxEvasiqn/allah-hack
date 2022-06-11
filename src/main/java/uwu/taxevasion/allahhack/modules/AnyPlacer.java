@@ -55,7 +55,7 @@ public class AnyPlacer extends Module {
                     CreativeInventoryActionC2SPacket theegg = new CreativeInventoryActionC2SPacket(36 + mc.player.getInventory().selectedSlot, egg);
                     mc.getNetworkHandler().sendPacket(theegg);
                     BlockHitResult placepos = new BlockHitResult(mc.player.getPos(), Direction.DOWN, new BlockPos(mc.player.getPos()), false);
-                    PlayerInteractBlockC2SPacket balls = new PlayerInteractBlockC2SPacket(Hand.MAIN_HAND, placepos);
+                    PlayerInteractBlockC2SPacket balls = new PlayerInteractBlockC2SPacket(Hand.MAIN_HAND, placepos, 0);
                     mc.getNetworkHandler().sendPacket(balls);
                 }
             }

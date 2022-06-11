@@ -46,7 +46,7 @@ public class Airstrike extends Module {
         .name("height")
         .description("y level they spawn")
         .defaultValue(100)
-        .min(1)
+        .min(-63)
         .sliderMax(320)
         .build()
     );
@@ -113,7 +113,7 @@ public class Airstrike extends Module {
                 CreativeInventoryActionC2SPacket set = new CreativeInventoryActionC2SPacket(36 + mc.player.getInventory().selectedSlot, bomb);
                 CreativeInventoryActionC2SPacket clr = new CreativeInventoryActionC2SPacket(36 + mc.player.getInventory().selectedSlot, new ItemStack(Items.AIR));
                 BlockHitResult bhr = new BlockHitResult(mc.player.getPos(), Direction.DOWN, new BlockPos(mc.player.getPos()), true);
-                PlayerInteractBlockC2SPacket use = new PlayerInteractBlockC2SPacket(Hand.MAIN_HAND, bhr);
+                PlayerInteractBlockC2SPacket use = new PlayerInteractBlockC2SPacket(Hand.MAIN_HAND, bhr, 0);
                 mc.getNetworkHandler().sendPacket(set);
                 mc.getNetworkHandler().sendPacket(use);
                 mc.getNetworkHandler().sendPacket(clr);

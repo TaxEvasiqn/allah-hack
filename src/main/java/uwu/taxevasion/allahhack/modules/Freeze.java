@@ -1,6 +1,5 @@
 package uwu.taxevasion.allahhack.modules;
 
-import meteordevelopment.meteorclient.systems.modules.Category;
 import meteordevelopment.meteorclient.systems.modules.Module;
 import meteordevelopment.orbit.EventHandler;
 import uwu.taxevasion.allahhack.Allah;

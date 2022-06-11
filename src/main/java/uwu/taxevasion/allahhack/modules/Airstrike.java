@@ -46,7 +46,7 @@ public class Airstrike extends Module {
         .name("height")
         .description("y level they spawn")
         .defaultValue(100)
-        .min(-63)
+        .min(0)
         .sliderMax(320)
         .build()
     );

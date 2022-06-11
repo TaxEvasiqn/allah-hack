@@ -11,7 +11,6 @@ import net.minecraft.item.Items;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import javax.lang.model.element.ModuleElement;
 import java.lang.invoke.MethodHandles;
 
 public class Allah extends MeteorAddon {

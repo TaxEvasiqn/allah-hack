@@ -1,6 +1,6 @@
 # allah hack
 
-coffee client rewritten shitly but theres some cool new stuff that barely works
+by the will of allah may you have powers similar to him!!!!!
 
 v literally you when you use this v
 

@@ -28,8 +28,7 @@ public class Airstrike extends Module {
         .name("radius")
         .description("radius they spawn from the player")
         .defaultValue(30)
-        .min(1)
-        .sliderMax(100)
+        .sliderRange(1, 100)
         .build()
     );
 
@@ -37,8 +36,7 @@ public class Airstrike extends Module {
         .name("power")
         .description("power of fireballs")
         .defaultValue(10)
-        .min(1)
-        .sliderMax(127)
+        .sliderRange(1, 127)
         .build()
     );
 
@@ -46,8 +44,7 @@ public class Airstrike extends Module {
         .name("height")
         .description("y level they spawn")
         .defaultValue(100)
-        .min(0)
-        .sliderMax(320)
+        .sliderRange(-63, 320)
         .build()
     );
 
@@ -55,8 +52,7 @@ public class Airstrike extends Module {
         .name("speed")
         .description("speed of fireballs")
         .defaultValue(10)
-        .min(1)
-        .sliderMax(100)
+        .sliderRange(1, 100)
         .build()
     );
 
@@ -64,8 +60,7 @@ public class Airstrike extends Module {
         .name("delay")
         .description("its in ticks")
         .defaultValue(2)
-        .min(1)
-        .sliderMax(20)
+        .sliderRange(1, 20)
         .build()
     );
 

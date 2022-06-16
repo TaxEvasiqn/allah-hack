@@ -36,20 +36,18 @@ public class ClickNuke extends Module {
 
     @EventHandler
     private void onMouseButton(MouseButtonEvent event) {
-        if (mc.options.attackKey.isPressed()) {
-            if (mc.currentScreen == null) {
-                HitResult hr = mc.cameraEntity.raycast(300, 0, true);
-                Vec3d owo = hr.getPos();
-                BlockPos pos = new BlockPos(owo);
-                //this probably can be simpler
-                int x1 = Math.round(pos.getX()) + radius.get();
-                int y1 = Math.round(pos.getY()) + radius.get();
-                int z1 = Math.round(pos.getZ()) + radius.get();
-                int x2 = Math.round(pos.getX()) - radius.get();
-                int y2 = Math.round(pos.getY()) - radius.get();
-                int z2 = Math.round(pos.getZ()) - radius.get();
-                mc.player.sendChatMessage("/fill " + x1 + " " + y1 + " " + z1 + " " + x2 + " " + y2 + " " + z2 + " " + block);
-            }
+        if (mc.options.attackKey.isPressed() && mc.currentScreen == null) {
+            HitResult hr = mc.cameraEntity.raycast(300, 0, true);
+            Vec3d owo = hr.getPos();
+            BlockPos pos = new BlockPos(owo);
+            //this probably can be simpler
+            int x1 = Math.round(pos.getX()) + radius.get();
+            int y1 = Math.round(pos.getY()) + radius.get();
+            int z1 = Math.round(pos.getZ()) + radius.get();
+            int x2 = Math.round(pos.getX()) - radius.get();
+            int y2 = Math.round(pos.getY()) - radius.get();
+            int z2 = Math.round(pos.getZ()) - radius.get();
+            mc.player.sendChatMessage("/fill " + x1 + " " + y1 + " " + z1 + " " + x2 + " " + y2 + " " + z2 + " " + block);
         }
     }
 }

@@ -15,7 +15,9 @@ public class CrashCommand extends Command {
     @Override
     public void build(LiteralArgumentBuilder<CommandSource> builder) {
         builder.then(argument("player", PlayerArgumentType.player()).executes(context -> {
-            mc.player.sendChatMessage("/particle explosion ~ ~ ~ 1 1 1 0.01 1333333337 force " + PlayerArgumentType.getPlayer(context).getEntityName());
+            if (mc.player.hasPermissionLevel(4)) {
+                mc.player.sendChatMessage("/particle explosion ~ ~ ~ 1 1 1 0.01 1333333337 force " + PlayerArgumentType.getPlayer(context).getEntityName());
+            }
             return SINGLE_SUCCESS;
         }));
     }

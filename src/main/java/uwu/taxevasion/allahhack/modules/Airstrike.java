@@ -11,8 +11,6 @@ import net.minecraft.item.Items;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.nbt.NbtDouble;
 import net.minecraft.nbt.NbtList;
-import net.minecraft.network.packet.c2s.play.CreativeInventoryActionC2SPacket;
-import net.minecraft.network.packet.c2s.play.PlayerInteractBlockC2SPacket;
 import net.minecraft.util.Hand;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
@@ -86,11 +84,14 @@ public class Airstrike extends Module {
 
     @EventHandler
     public void onTick(TickEvent.Post event) {
+        ItemStack bomb = new ItemStack(Items.SALMON_SPAWN_EGG);
+        ItemStack bfr = mc.player.getMainHandStack();
+        BlockHitResult bhr = new BlockHitResult(mc.player.getPos(), Direction.DOWN, new BlockPos(mc.player.getPos()), false);
         i++;
         if (mc.player.getAbilities().creativeMode) {
             if (i >= delay.get()) {
                 Vec3d cpos = pickRandomPos();
-                ItemStack bomb = new ItemStack(Items.SALMON_SPAWN_EGG);
+
                 NbtCompound tag = new NbtCompound();
                 NbtList speedlist = new NbtList();
                 NbtList pos = new NbtList();
@@ -105,13 +106,9 @@ public class Airstrike extends Module {
                 tag.put("Pos", pos);
                 tag.putString("id", "minecraft:fireball");
                 bomb.setSubNbt("EntityTag", tag);
-                CreativeInventoryActionC2SPacket set = new CreativeInventoryActionC2SPacket(36 + mc.player.getInventory().selectedSlot, bomb);
-                CreativeInventoryActionC2SPacket clr = new CreativeInventoryActionC2SPacket(36 + mc.player.getInventory().selectedSlot, new ItemStack(Items.AIR));
-                BlockHitResult bhr = new BlockHitResult(mc.player.getPos(), Direction.DOWN, new BlockPos(mc.player.getPos()), true);
-                PlayerInteractBlockC2SPacket use = new PlayerInteractBlockC2SPacket(Hand.MAIN_HAND, bhr, 0);
-                mc.getNetworkHandler().sendPacket(set);
-                mc.getNetworkHandler().sendPacket(use);
-                mc.getNetworkHandler().sendPacket(clr);
+                mc.interactionManager.clickCreativeStack(bomb, 36 + mc.player.getInventory().selectedSlot);
+                mc.interactionManager.interactBlock(mc.player, Hand.MAIN_HAND, bhr);
+                mc.interactionManager.clickCreativeStack(bfr, 36 + mc.player.getInventory().selectedSlot);
                 i = 0;
             }
         } else {

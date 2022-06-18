@@ -9,8 +9,6 @@ import net.minecraft.item.Items;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.nbt.NbtDouble;
 import net.minecraft.nbt.NbtList;
-import net.minecraft.network.packet.c2s.play.CreativeInventoryActionC2SPacket;
-import net.minecraft.network.packet.c2s.play.PlayerInteractBlockC2SPacket;
 import net.minecraft.util.Hand;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.hit.HitResult;
@@ -34,7 +32,7 @@ public class Boom extends Module {
         .defaultValue(10)
         .min(1)
         .sliderMax(10)
-        .visible(() -> mode.get() != Modes.Lightning)
+        .visible(() -> mode.get() != Modes.Lightning || mode.get() != Modes.Instant)
         .build()
     );
 
@@ -59,12 +57,12 @@ public class Boom extends Module {
                 HitResult hr = mc.cameraEntity.raycast(300, 0, true);
                 Vec3d owo = hr.getPos();
                 BlockPos pos = new BlockPos(owo);
+                ItemStack rst = mc.player.getMainHandStack();
                 Vec3d sex = mc.player.getRotationVector().multiply(speed.get());
-                BlockHitResult bhr = new BlockHitResult(mc.player.getEyePos(), Direction.DOWN, new BlockPos(mc.player.getEyePos()), true);
-                PlayerInteractBlockC2SPacket use = new PlayerInteractBlockC2SPacket(Hand.MAIN_HAND, bhr, 0);
-                CreativeInventoryActionC2SPacket clr = new CreativeInventoryActionC2SPacket(36 + mc.player.getInventory().selectedSlot, new ItemStack(Items.AIR));
+                BlockHitResult bhr = new BlockHitResult(mc.player.getEyePos(), Direction.DOWN, new BlockPos(mc.player.getEyePos()), false);
                 switch (mode.get()) {
                     case Instant -> {
+                        Vec3d aaa = mc.player.getRotationVector().multiply(100);
                         ItemStack Instant = new ItemStack(Items.SALMON_SPAWN_EGG);
                         NbtCompound tag = new NbtCompound();
                         NbtList Pos = new NbtList();
@@ -72,18 +70,17 @@ public class Boom extends Module {
                         Pos.add(NbtDouble.of(pos.getX()));
                         Pos.add(NbtDouble.of(pos.getY()));
                         Pos.add(NbtDouble.of(pos.getZ()));
-                        motion.add(NbtDouble.of(sex.x));
-                        motion.add(NbtDouble.of(sex.y));
-                        motion.add(NbtDouble.of(sex.z));
+                        motion.add(NbtDouble.of(aaa.x));
+                        motion.add(NbtDouble.of(aaa.y));
+                        motion.add(NbtDouble.of(aaa.z));
                         tag.put("Pos", Pos);
                         tag.put("Motion", motion);
                         tag.putInt("ExplosionPower", power.get());
                         tag.putString("id", "minecraft:fireball");
                         Instant.setSubNbt("EntityTag", tag);
-                        CreativeInventoryActionC2SPacket get = new CreativeInventoryActionC2SPacket(36 + mc.player.getInventory().selectedSlot, Instant);
-                        mc.getNetworkHandler().sendPacket(get);
-                        mc.getNetworkHandler().sendPacket(use);
-                        mc.getNetworkHandler().sendPacket(clr);
+                        mc.interactionManager.clickCreativeStack(Instant, 36 + mc.player.getInventory().selectedSlot);
+                        mc.interactionManager.interactBlock(mc.player, Hand.MAIN_HAND, bhr);
+                        mc.interactionManager.clickCreativeStack(rst, 36 + mc.player.getInventory().selectedSlot);
                     }
                     case Motion -> {
                         ItemStack Motion = new ItemStack(Items.SALMON_SPAWN_EGG);
@@ -96,10 +93,9 @@ public class Boom extends Module {
                         tag.putInt("ExplosionPower", power.get());
                         tag.putString("id", "minecraft:fireball");
                         Motion.setSubNbt("EntityTag", tag);
-                        CreativeInventoryActionC2SPacket get = new CreativeInventoryActionC2SPacket(36 + mc.player.getInventory().selectedSlot, Motion);
-                        mc.getNetworkHandler().sendPacket(get);
-                        mc.getNetworkHandler().sendPacket(use);
-                        mc.getNetworkHandler().sendPacket(clr);
+                        mc.interactionManager.clickCreativeStack(Motion, 36 + mc.player.getInventory().selectedSlot);
+                        mc.interactionManager.interactBlock(mc.player, Hand.MAIN_HAND, bhr);
+                        mc.interactionManager.clickCreativeStack(rst, 36 + mc.player.getInventory().selectedSlot);
                     }
                     case Lightning -> {
                         ItemStack Lightning = new ItemStack(Items.SALMON_SPAWN_EGG);
@@ -111,10 +107,9 @@ public class Boom extends Module {
                         tag.put("Pos", Pos);
                         tag.putString("id", "minecraft:lightning_bolt");
                         Lightning.setSubNbt("EntityTag", tag);
-                        CreativeInventoryActionC2SPacket get = new CreativeInventoryActionC2SPacket(36 + mc.player.getInventory().selectedSlot, Lightning);
-                        mc.getNetworkHandler().sendPacket(get);
-                        mc.getNetworkHandler().sendPacket(use);
-                        mc.getNetworkHandler().sendPacket(clr);
+                        mc.interactionManager.clickCreativeStack(Lightning, 36 + mc.player.getInventory().selectedSlot);
+                        mc.interactionManager.interactBlock(mc.player, Hand.MAIN_HAND, bhr);
+                        mc.interactionManager.clickCreativeStack(rst, 36 + mc.player.getInventory().selectedSlot);
                     }
                     case Kitty -> {
                         ItemStack Kitty = new ItemStack(Items.CAT_SPAWN_EGG);
@@ -125,10 +120,9 @@ public class Boom extends Module {
                         motion.add(NbtDouble.of(sex.z));
                         tag.put("Motion", motion);
                         Kitty.setSubNbt("EntityTag", tag);
-                        CreativeInventoryActionC2SPacket get = new CreativeInventoryActionC2SPacket(36 + mc.player.getInventory().selectedSlot, Kitty);
-                        mc.getNetworkHandler().sendPacket(get);
-                        mc.getNetworkHandler().sendPacket(use);
-                        mc.getNetworkHandler().sendPacket(clr);
+                        mc.interactionManager.clickCreativeStack(Kitty, 36 + mc.player.getInventory().selectedSlot);
+                        mc.interactionManager.interactBlock(mc.player, Hand.MAIN_HAND, bhr);
+                        mc.interactionManager.clickCreativeStack(rst, 36 + mc.player.getInventory().selectedSlot);
                     }
                 }
             } else {

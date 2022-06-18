@@ -23,7 +23,6 @@ public class ConsoleFlood extends Module {
         .description("packets/tick")
         .defaultValue(1)
         .sliderRange(1, 20)
-        .visible(() -> mode.get() != Modes.Chat)
         .build()
     );
 

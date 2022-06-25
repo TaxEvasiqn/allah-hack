@@ -1,8 +1,6 @@
 package uwu.taxevasion.allahhack;
 
-import meteordevelopment.meteorclient.systems.hud.HUD;
 import uwu.taxevasion.allahhack.commands.*;
-import uwu.taxevasion.allahhack.modules.hud.TPSDisplay;
 import uwu.taxevasion.allahhack.modules.*;
 import meteordevelopment.meteorclient.MeteorClient;
 import meteordevelopment.meteorclient.addons.MeteorAddon;
@@ -53,8 +51,6 @@ public class Allah extends MeteorAddon {
         Commands.get().add(new RenameCommand());
         Commands.get().add(new ShriekCommand());
         Commands.get().add(new StopCommand());
-
-        HUD.get().elements.add(new TPSDisplay());
 	}
 
 	@Override

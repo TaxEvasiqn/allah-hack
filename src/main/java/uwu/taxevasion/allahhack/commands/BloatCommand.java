@@ -22,14 +22,14 @@ public class BloatCommand extends Command {
     public void build(LiteralArgumentBuilder<CommandSource> builder) {
         builder.executes(ctx -> {
             ItemStack item = mc.player.getMainHandStack();
-            item.setNbt(StringNbtReader.parse("{a:[[]" + ",[]".repeat(r.nextInt(40000)) + "]}"));
+            item.setNbt(StringNbtReader.parse("{" + "a".repeat(r.nextInt(65000)) + ":[]}"));
             return SINGLE_SUCCESS;
         });
 
-        builder.then(argument("bytes", IntegerArgumentType.integer(26)).executes(context -> {
-            ItemStack item = mc.player.getMainHandStack(); //maths!!!
-            int bytess = Math.round(context.getArgument("bytes", Integer.class) - 8) / 3;
-            item.setNbt(StringNbtReader.parse("{a:[[]" + ",[]".repeat(bytess) + "]}"));
+        builder.then(argument("bytes", IntegerArgumentType.integer(1)).executes(context -> {
+            ItemStack item = mc.player.getMainHandStack();
+            int bytess = Math.round(context.getArgument("bytes", Integer.class) - 5);
+            item.setNbt(StringNbtReader.parse("{" + "a".repeat(bytess) + ":[]}"));
             return SINGLE_SUCCESS;
         }));
     }

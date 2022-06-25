@@ -32,7 +32,7 @@ public class Boom extends Module {
         .defaultValue(10)
         .min(1)
         .sliderMax(10)
-        .visible(() -> mode.get() != Modes.Lightning || mode.get() != Modes.Instant)
+        .visible(() -> mode.get() != Modes.Lightning || mode.get() != Modes.Instant || mode.get() != Modes.Arrow)
         .build()
     );
 
@@ -124,6 +124,21 @@ public class Boom extends Module {
                         mc.interactionManager.interactBlock(mc.player, Hand.MAIN_HAND, bhr);
                         mc.interactionManager.clickCreativeStack(rst, 36 + mc.player.getInventory().selectedSlot);
                     }
+                    case Arrow -> {
+                        Vec3d asdf = mc.player.getRotationVector().multiply(10);
+                        ItemStack Arrow = new ItemStack(Items.SALMON_SPAWN_EGG);
+                        NbtCompound tag = new NbtCompound();
+                        NbtList speed = new NbtList();
+                        speed.add(NbtDouble.of(asdf.x));
+                        speed.add(NbtDouble.of(asdf.y));
+                        speed.add(NbtDouble.of(asdf.z));
+                        tag.put("Motion", speed);
+                        tag.putString("id", "minecraft:arrow");
+                        Arrow.setSubNbt("EntityTag", tag);
+                        mc.interactionManager.clickCreativeStack(Arrow, 36 + mc.player.getInventory().selectedSlot);
+                        mc.interactionManager.interactBlock(mc.player, Hand.MAIN_HAND, bhr);
+                        mc.interactionManager.clickCreativeStack(rst, 36 + mc.player.getInventory().selectedSlot);
+                    }
                 }
             } else {
                 error("You need to be in creative mode.");
@@ -132,6 +147,6 @@ public class Boom extends Module {
         }
     }
     public enum Modes {
-        Instant, Motion, Lightning, Kitty
+        Instant, Motion, Lightning, Kitty, Arrow
     }
 }

@@ -1,6 +1,8 @@
 package uwu.taxevasion.allahhack;
 
+import meteordevelopment.meteorclient.systems.hud.HUD;
 import uwu.taxevasion.allahhack.commands.*;
+import uwu.taxevasion.allahhack.modules.hud.TPSDisplay;
 import uwu.taxevasion.allahhack.modules.*;
 import meteordevelopment.meteorclient.MeteorClient;
 import meteordevelopment.meteorclient.addons.MeteorAddon;
@@ -15,7 +17,7 @@ import java.lang.invoke.MethodHandles;
 
 public class Allah extends MeteorAddon {
 	public static final Logger LOG = LoggerFactory.getLogger(Allah.class);
-	public static final Category CATEGORY = new Category("AllahHack", Items.ACACIA_BOAT.getDefaultStack());
+	public static final Category CATEGORY = new Category("AllahHack", Items.PLAYER_HEAD.getDefaultStack());
 
 	@Override
 	public void onInitialize() {
@@ -28,6 +30,7 @@ public class Allah extends MeteorAddon {
         Modules.get().add(new Airstrike());
         Modules.get().add(new AnyPlacer());
         Modules.get().add(new AutoExecute());
+        Modules.get().add(new AutoFemboy());
         Modules.get().add(new FlightPlus());
         Modules.get().add(new Boom());
         Modules.get().add(new ChunkCrash());
@@ -37,14 +40,21 @@ public class Allah extends MeteorAddon {
         Modules.get().add(new ShulkerDupe());
         Modules.get().add(new Printer());
         Modules.get().add(new VelocityBoost());
+        Modules.get().add(new InstantVoider());
 
         Commands.get().add(new BloatCommand());
         Commands.get().add(new ClearCommand());
         Commands.get().add(new CorruptCommand());
         Commands.get().add(new CrashCommand());
+        Commands.get().add(new EffectCommand());
         Commands.get().add(new ForceOpCommand());
-		Commands.get().add(new ItemCommand());
+        Commands.get().add(new HideCommand());
         Commands.get().add(new KillCommand());
+        Commands.get().add(new RenameCommand());
+        Commands.get().add(new ShriekCommand());
+        Commands.get().add(new StopCommand());
+
+        HUD.get().elements.add(new TPSDisplay());
 	}
 
 	@Override

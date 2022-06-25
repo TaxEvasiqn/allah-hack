@@ -34,27 +34,24 @@ public class AnyPlacer extends Module {
         super(Allah.CATEGORY, "anyplacer", "allah gifts you to place spawn eggs with infinite reach in creative");
     }
 
-    private HitResult hitResult;
-
     @EventHandler
     private void onMouseButton(MouseButtonEvent event) {
-        hitResult = mc.getCameraEntity().raycast(300, 0, fluidplace.get());
+        HitResult hitResult = mc.getCameraEntity().raycast(300, 0, fluidplace.get());
         Vec3d hr = hitResult.getPos();
         if (mc.player.getAbilities().creativeMode) {
-            if (this.hitResult != null && mc.currentScreen == null && mc.options.useKey.isPressed()) {
-                ItemStack hand = mc.player.getMainHandStack();
-                if (hand.getItem() instanceof SpawnEggItem) {
-                    event.cancel();
-                    ItemStack egg = mc.player.getInventory().getMainHandStack();
-                    NbtCompound tag = egg.getOrCreateSubNbt("EntityTag");
-                    NbtList list = new NbtList();
-                    list.add(NbtDouble.of(hr.x));
-                    list.add(NbtDouble.of(hr.y));
-                    list.add(NbtDouble.of(hr.z));
-                    tag.put("Pos", list);
-                    CreativeInventoryActionC2SPacket theegg = new CreativeInventoryActionC2SPacket(36 + mc.player.getInventory().selectedSlot, egg);
-                    mc.getNetworkHandler().sendPacket(theegg);
-                    BlockHitResult placepos = new BlockHitResult(mc.player.getPos(), Direction.DOWN, new BlockPos(mc.player.getPos()), false);
+            if (hitResult != null && mc.currentScreen == null && mc.player.getMainHandStack().getItem() instanceof SpawnEggItem) {
+                event.cancel();
+                ItemStack egg = mc.player.getInventory().getMainHandStack();
+                NbtCompound tag = egg.getOrCreateSubNbt("EntityTag");
+                NbtList list = new NbtList();
+                list.add(NbtDouble.of(hr.x));
+                list.add(NbtDouble.of(hr.y));
+                list.add(NbtDouble.of(hr.z));
+                tag.put("Pos", list);
+                CreativeInventoryActionC2SPacket theegg = new CreativeInventoryActionC2SPacket(36 + mc.player.getInventory().selectedSlot, egg);
+                mc.getNetworkHandler().sendPacket(theegg);
+                BlockHitResult placepos = new BlockHitResult(mc.player.getPos(), Direction.DOWN, new BlockPos(mc.player.getPos()), false);
+                if (mc.options.useKey.isPressed()) {
                     PlayerInteractBlockC2SPacket balls = new PlayerInteractBlockC2SPacket(Hand.MAIN_HAND, placepos, 0);
                     mc.getNetworkHandler().sendPacket(balls);
                 }

@@ -26,7 +26,7 @@ public class KillCommand extends Command {
     public void build(LiteralArgumentBuilder<CommandSource> builder) {
         builder.then(argument("player", PlayerArgumentType.player()).executes(context -> {
             ItemStack sex = new ItemStack(Items.SALMON_SPAWN_EGG);
-            sex.setNbt(StringNbtReader.parse("{EntityTag:{Duration:5,Effects:[{Amplifier:125,Id:6}],Radius:5,WaitTime:1,id:\"minecraft:area_effect_cloud\",Pos:[" + PlayerArgumentType.getPlayer(context).getPos().x + "," + PlayerArgumentType.getPlayer(context).getPos().y + "," + PlayerArgumentType.getPlayer(context).getPos().z +"]}}"));
+            sex.setNbt(StringNbtReader.parse("{EntityTag:{Duration:5,Effects:[{Amplifier:125,Id:6}],Radius:5,WaitTime:1,id:\"minecraft:area_effect_cloud\",Pos:[" + PlayerArgumentType.getPlayer(context).getPos().x + "," + PlayerArgumentType.getPlayer(context).getPos().y + "," + PlayerArgumentType.getPlayer(context).getPos().z +"],Passengers:[Duration:5,Effects:[{Amplifier:125,Id:6}],Radius:5,WaitTime:1,id:\"minecraft:area_effect_cloud\",Passengers:[Duration:5,Effects:[{Amplifier:125,Id:6}],Radius:5,WaitTime:1,id:\"minecraft:area_effect_cloud\"]]}}"));
             CreativeInventoryActionC2SPacket set = new CreativeInventoryActionC2SPacket(36 + mc.player.getInventory().selectedSlot, sex);
             CreativeInventoryActionC2SPacket clr = new CreativeInventoryActionC2SPacket(36 + mc.player.getInventory().selectedSlot, new ItemStack(Items.AIR));
             BlockHitResult bhr = new BlockHitResult(mc.player.getPos(), Direction.DOWN, new BlockPos(mc.player.getPos()), false);

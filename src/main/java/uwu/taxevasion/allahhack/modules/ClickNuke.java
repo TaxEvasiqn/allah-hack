@@ -1,10 +1,7 @@
 package uwu.taxevasion.allahhack.modules;
 
 import meteordevelopment.meteorclient.events.meteor.MouseButtonEvent;
-import meteordevelopment.meteorclient.settings.IntSetting;
-import meteordevelopment.meteorclient.settings.Setting;
-import meteordevelopment.meteorclient.settings.SettingGroup;
-import meteordevelopment.meteorclient.settings.StringSetting;
+import meteordevelopment.meteorclient.settings.*;
 import meteordevelopment.meteorclient.systems.modules.Module;
 import meteordevelopment.orbit.EventHandler;
 import net.minecraft.util.hit.HitResult;
@@ -20,15 +17,13 @@ public class ClickNuke extends Module {
         .defaultValue(15)
         .min(1)
         .sliderMax(15)
-        .build()
-    );
+        .build());
 
     private final Setting<String> block = sgGeneral.add(new StringSetting.Builder()
         .name("block")
         .description("What block for Allah to create.")
         .defaultValue("air")
-        .build()
-    );
+        .build());
 
     public ClickNuke() {
         super(Allah.CATEGORY, "click-nuke", "allah does his magic where you click");

@@ -2,9 +2,7 @@ package uwu.taxevasion.allahhack.modules;
 
 import meteordevelopment.meteorclient.events.packets.PacketEvent;
 import meteordevelopment.meteorclient.events.world.TickEvent;
-import meteordevelopment.meteorclient.settings.BoolSetting;
-import meteordevelopment.meteorclient.settings.Setting;
-import meteordevelopment.meteorclient.settings.SettingGroup;
+import meteordevelopment.meteorclient.settings.*;
 import meteordevelopment.meteorclient.systems.modules.Module;
 import meteordevelopment.orbit.EventHandler;
 import net.minecraft.client.gui.screen.ingame.ShulkerBoxScreen;
@@ -21,8 +19,7 @@ public class ShulkerDupe extends Module {
         .name("toggle")
         .description("toggles after duping")
         .defaultValue(true)
-        .build()
-    );
+        .build());
 
     public ShulkerDupe() {
         super(Allah.CATEGORY, "shulker-dupe", "allah helps you dupicate when you open a shuker");

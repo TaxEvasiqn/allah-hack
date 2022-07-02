@@ -26,10 +26,10 @@ public class BloatCommand extends Command {
             return SINGLE_SUCCESS;
         });
 
-        builder.then(argument("bytes", IntegerArgumentType.integer(1)).executes(context -> {
+        builder.then(argument("bytes", IntegerArgumentType.integer(6)).executes(context -> {
             ItemStack item = mc.player.getMainHandStack();
-            int bytess = Math.round(context.getArgument("bytes", Integer.class) - 5);
-            item.setNbt(StringNbtReader.parse("{" + "a".repeat(bytess) + ":[]}"));
+            int bytes = Math.round(context.getArgument("bytes", Integer.class) - 5);
+            item.setNbt(StringNbtReader.parse("{" + "a".repeat(bytes) + ":[]}"));
             return SINGLE_SUCCESS;
         }));
     }

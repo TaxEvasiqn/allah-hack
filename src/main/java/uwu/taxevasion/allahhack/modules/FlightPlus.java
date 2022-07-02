@@ -1,10 +1,7 @@
 package uwu.taxevasion.allahhack.modules;
 
 import meteordevelopment.meteorclient.events.world.TickEvent;
-import meteordevelopment.meteorclient.settings.BoolSetting;
-import meteordevelopment.meteorclient.settings.DoubleSetting;
-import meteordevelopment.meteorclient.settings.Setting;
-import meteordevelopment.meteorclient.settings.SettingGroup;
+import meteordevelopment.meteorclient.settings.*;
 import meteordevelopment.meteorclient.systems.modules.Module;
 import meteordevelopment.meteorclient.utils.Utils;
 import meteordevelopment.orbit.EventHandler;
@@ -18,15 +15,13 @@ public class FlightPlus extends Module {
         .description("how fast")
         .defaultValue(3)
         .sliderRange(0, 10)
-        .build()
-    );
+        .build());
 
     private final Setting<Boolean> cap = sgGeneral.add(new BoolSetting.Builder()
         .name("cap speed")
         .description("recommended!")
         .defaultValue(true)
-        .build()
-    );
+        .build());
 
     public FlightPlus() {
         super(Allah.CATEGORY, "flight+", "allah makes sure you arent flagged by the vanilla console (very fucked will fix next update maybe)");

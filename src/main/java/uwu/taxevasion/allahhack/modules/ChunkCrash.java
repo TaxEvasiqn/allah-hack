@@ -1,10 +1,7 @@
 package uwu.taxevasion.allahhack.modules;
 
 import meteordevelopment.meteorclient.events.world.TickEvent;
-import meteordevelopment.meteorclient.settings.EnumSetting;
-import meteordevelopment.meteorclient.settings.IntSetting;
-import meteordevelopment.meteorclient.settings.Setting;
-import meteordevelopment.meteorclient.settings.SettingGroup;
+import meteordevelopment.meteorclient.settings.*;
 import meteordevelopment.meteorclient.systems.modules.Module;
 import meteordevelopment.orbit.EventHandler;
 import net.minecraft.item.ItemStack;
@@ -27,8 +24,7 @@ public class ChunkCrash extends Module {
         .name("mode")
         .description("how to crash")
         .defaultValue(Modes.NOCOM)
-        .build()
-    );
+        .build());
 
     private final Setting<Integer> amount = sgGeneral.add(new IntSetting.Builder()
         .name("amount")
@@ -36,8 +32,7 @@ public class ChunkCrash extends Module {
         .defaultValue(15)
         .min(1)
         .sliderMax(100)
-        .build()
-    );
+        .build());
 
     public ChunkCrash() {
         super(Allah.CATEGORY, "chunk-crash", "by the will of allah let the server die");

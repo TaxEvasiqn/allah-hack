@@ -1,8 +1,9 @@
 # allah hack
 
 by the will of allah may you have powers similar to him!!!!!
-commands: (since no one actually looks at them)
-Bloat, Clear, Corrupt, Crash, Effect, ForceOp, Hide, Kill, Rename, Shriek, Stop
+
+commands since no one actually looks at them:
+Beehive, Bloat, Clear, Corrupt, Crash, Effect, ForceOp, Hide, Kill, Rename, Shriek, Stop
 
 v literally you when you use this v
 

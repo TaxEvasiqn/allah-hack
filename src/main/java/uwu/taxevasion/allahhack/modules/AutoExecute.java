@@ -1,8 +1,6 @@
 package uwu.taxevasion.allahhack.modules;
 
-import meteordevelopment.meteorclient.settings.Setting;
-import meteordevelopment.meteorclient.settings.SettingGroup;
-import meteordevelopment.meteorclient.settings.StringListSetting;
+import meteordevelopment.meteorclient.settings.*;
 import meteordevelopment.meteorclient.systems.modules.Module;
 import meteordevelopment.orbit.EventHandler;
 import uwu.taxevasion.allahhack.Allah;
@@ -15,8 +13,7 @@ public class AutoExecute extends Module {
         .name("commands")
         .description("Commands to run")
         .defaultValue(List.of("/say wow", "/tellraw @a {\"text\":\"balls\"}"))
-        .build()
-    );
+        .build());
 
     public AutoExecute() {
         super(Allah.CATEGORY, "auto-execute", "Automatically executes commands on activate");

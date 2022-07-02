@@ -1,47 +1,57 @@
 package uwu.taxevasion.allahhack.modules;
 
 import meteordevelopment.meteorclient.events.world.TickEvent;
-import meteordevelopment.meteorclient.settings.BoolSetting;
-import meteordevelopment.meteorclient.settings.IntSetting;
-import meteordevelopment.meteorclient.settings.Setting;
-import meteordevelopment.meteorclient.settings.SettingGroup;
+import meteordevelopment.meteorclient.settings.*;
 import meteordevelopment.meteorclient.systems.modules.Module;
 import meteordevelopment.orbit.EventHandler;
 import uwu.taxevasion.allahhack.Allah;
 
-public class InstantVoider extends Module {
+public class Voider extends Module {
     private final SettingGroup sgGeneral = settings.getDefaultGroup();
-    private final Setting<Integer> radius = sgGeneral.add(new IntSetting.Builder()
+    private final Setting<Integer> r = sgGeneral.add(new IntSetting.Builder()
         .name("radius")
         .description("radius")
         .defaultValue(90)
         .sliderRange(1, 90)
-        .build()
-    );
+        .build());
 
     private final Setting<Boolean> cf = sgGeneral.add(new BoolSetting.Builder()
         .name("disable-command-feedback")
         .description("disables command feedback")
         .defaultValue(false)
-        .build()
-    );
+        .build());
 
-    public InstantVoider() {
-        super(Allah.CATEGORY, "instant-voider", "erekrjskjfofhsfhqe");
+    public Voider() {
+        super(Allah.CATEGORY, "voider", "erekrjskjfofhsfhqe");
     }
+
+    int i = 319;
 
     @EventHandler
     public void onTick(TickEvent.Post event) {
-        int r = radius.get();
+        if (!(mc.player.hasPermissionLevel(4))) {
+            toggle();
+            error("must have op");
+        }
+        i--;
+        mc.player.sendChatMessage("/fill ~-" + r.get() + " " + i + " ~-" + r.get() + " ~" + r.get() + " " + i + " ~" + r.get() + " air");
+        if (i == -64) {
+            i = 319;
+            toggle();
+        }
+    }
+
+    @EventHandler
+    public void onActivate() {
         if (cf.get()) {
             mc.player.sendChatMessage("/gamerule sendCommandFeedback false");
         }
-        for (int i = 319; i > -64; i--) {
-            mc.player.sendChatMessage("/fill ~-" + r + " " + i + " ~-" + r + " ~" + r + " " + i + " ~" + r + " air");
-        }
+    }
+
+    @EventHandler
+    public void onDeactivate() {
         if (cf.get()) {
             mc.player.sendChatMessage("/gamerule sendCommandFeedback true");
         }
-        toggle();
     }
 }

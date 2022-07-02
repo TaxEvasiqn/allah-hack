@@ -12,15 +12,13 @@ public class VelocityBoost extends Module {
         .name("mode")
         .description("set or add")
         .defaultValue(Modes.Set)
-        .build()
-    );
+        .build());
 
     private final Setting<Boolean> facing = sgGeneral.add(new BoolSetting.Builder()
         .name("facing")
         .description("boosts you in the direction you're facing")
         .defaultValue(true)
-        .build()
-    );
+        .build());
 
     private final Setting<Double> boost = sgGeneral.add(new DoubleSetting.Builder()
         .name("boost")
@@ -28,8 +26,7 @@ public class VelocityBoost extends Module {
         .defaultValue(0)
         .sliderRange(-10, 10)
         .visible(facing::get)
-        .build()
-    );
+        .build());
 
     private final Setting<Double> xboost = sgGeneral.add(new DoubleSetting.Builder()
         .name("x")
@@ -37,16 +34,14 @@ public class VelocityBoost extends Module {
         .defaultValue(0)
         .sliderRange(-10, 10)
         .visible(() -> !facing.get())
-        .build()
-    );
+        .build());
 
     private final Setting<Double> yboost = sgGeneral.add(new DoubleSetting.Builder()
         .name("y")
         .description("boost in y")
         .defaultValue(0)
         .sliderRange(-10, 10)
-        .build()
-    );
+        .build());
 
     private final Setting<Double> zboost = sgGeneral.add(new DoubleSetting.Builder()
         .name("z")
@@ -54,8 +49,7 @@ public class VelocityBoost extends Module {
         .defaultValue(0)
         .sliderRange(-10, 10)
         .visible(() -> !facing.get())
-        .build()
-    );
+        .build());
 
     public VelocityBoost() {
         super(Allah.CATEGORY, "velocity-boost", "changes your velocity (much faster than you think)");

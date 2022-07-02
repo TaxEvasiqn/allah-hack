@@ -23,8 +23,7 @@ public class Boom extends Module {
         .name("mode")
         .description("the mode")
         .defaultValue(Modes.Instant)
-        .build()
-    );
+        .build());
 
     private final Setting<Double> speed = sgGeneral.add(new DoubleSetting.Builder()
         .name("speed")
@@ -33,8 +32,7 @@ public class Boom extends Module {
         .min(1)
         .sliderMax(10)
         .visible(() -> mode.get() != Modes.Lightning || mode.get() != Modes.Instant || mode.get() != Modes.Arrow)
-        .build()
-    );
+        .build());
 
     private final Setting<Integer> power = sgGeneral.add(new IntSetting.Builder()
         .name("power")
@@ -43,8 +41,7 @@ public class Boom extends Module {
         .min(1)
         .sliderMax(127)
         .visible(() -> mode.get() == Modes.Instant || mode.get() == Modes.Motion)
-        .build()
-    );
+        .build());
 
     public Boom() {
         super(Allah.CATEGORY, "boom", "shoots something where you click");

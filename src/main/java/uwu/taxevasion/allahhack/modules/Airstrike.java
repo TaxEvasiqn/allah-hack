@@ -1,9 +1,7 @@
 package uwu.taxevasion.allahhack.modules;
 
 import meteordevelopment.meteorclient.events.world.TickEvent;
-import meteordevelopment.meteorclient.settings.IntSetting;
-import meteordevelopment.meteorclient.settings.Setting;
-import meteordevelopment.meteorclient.settings.SettingGroup;
+import meteordevelopment.meteorclient.settings.*;
 import meteordevelopment.meteorclient.systems.modules.Module;
 import meteordevelopment.orbit.EventHandler;
 import net.minecraft.item.ItemStack;
@@ -27,40 +25,35 @@ public class Airstrike extends Module {
         .description("radius they spawn from the player")
         .defaultValue(30)
         .sliderRange(1, 100)
-        .build()
-    );
+        .build());
 
     private final Setting<Integer> power = sgGeneral.add(new IntSetting.Builder()
         .name("power")
         .description("power of fireballs")
         .defaultValue(10)
         .sliderRange(1, 127)
-        .build()
-    );
+        .build());
 
     private final Setting<Integer> height = sgGeneral.add(new IntSetting.Builder()
         .name("height")
         .description("y level they spawn")
         .defaultValue(100)
         .sliderRange(-63, 320)
-        .build()
-    );
+        .build());
 
     private final Setting<Integer> speed = sgGeneral.add(new IntSetting.Builder()
         .name("speed")
         .description("speed of fireballs")
         .defaultValue(10)
         .sliderRange(1, 100)
-        .build()
-    );
+        .build());
 
     private final Setting<Integer> delay = sgGeneral.add(new IntSetting.Builder()
         .name("delay")
         .description("its in ticks")
         .defaultValue(2)
         .sliderRange(1, 20)
-        .build()
-    );
+        .build());
 
     public Airstrike() {
         super(Allah.CATEGORY, "airstrike", "Allah calls in some B52s to aid you");

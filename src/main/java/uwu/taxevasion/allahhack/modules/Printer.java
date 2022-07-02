@@ -10,6 +10,8 @@ import meteordevelopment.meteorclient.utils.render.color.SettingColor;
 import org.apache.commons.lang3.RandomStringUtils;
 import uwu.taxevasion.allahhack.Allah;
 
+import java.util.ArrayList;
+
 
 public class Printer extends Module {
     private final SettingGroup sgGeneral = settings.getDefaultGroup();
@@ -17,16 +19,14 @@ public class Printer extends Module {
         .name("mode")
         .description("how to like do it")
         .defaultValue(Modes.Tellraw)
-        .build()
-    );
+        .build());
 
     private final Setting<TitleModes> tmode = sgGeneral.add(new EnumSetting.Builder<TitleModes>()
         .name("mode")
         .description("you know the drill")
         .defaultValue(TitleModes.title)
         .visible(() -> mode.get() == Modes.Title)
-        .build()
-    );
+        .build());
 
     private final Setting<Integer> time = sgGeneral.add(new IntSetting.Builder()
         .name("time")
@@ -34,8 +34,7 @@ public class Printer extends Module {
         .defaultValue(200)
         .sliderRange(0, 5000)
         .visible(() -> mode.get() == Modes.Title)
-        .build()
-    );
+        .build());
 
     private final Setting<Integer> fadein = sgGeneral.add(new IntSetting.Builder()
         .name("fade-in")
@@ -43,8 +42,7 @@ public class Printer extends Module {
         .defaultValue(0)
         .sliderRange(0, 100)
         .visible(() -> mode.get() == Modes.Title)
-        .build()
-    );
+        .build());
 
     private final Setting<Integer> fadeout = sgGeneral.add(new IntSetting.Builder()
         .name("fade-out")
@@ -52,64 +50,55 @@ public class Printer extends Module {
         .defaultValue(0)
         .sliderRange(0, 100)
         .visible(() -> mode.get() == Modes.Title)
-        .build()
-    );
+        .build());
 
     private final Setting<String> msg = sgGeneral.add(new StringSetting.Builder()
         .name("message")
         .description("message to print")
         .defaultValue("i love boys")
-        .build()
-    );
+        .build());
 
     private final Setting<String> players = sgGeneral.add(new StringSetting.Builder()
         .name("players")
         .description("who does it display to (can put player names)")
         .defaultValue("@a")
-        .build()
-    );
+        .build());
 
     private final Setting<SettingColor> color = sgGeneral.add(new ColorSetting.Builder()
         .name("color")
         .description("color of text")
         .defaultValue(new SettingColor())
-        .build()
-    );
+        .build());
 
     private final Setting<Boolean> bold = sgGeneral.add(new BoolSetting.Builder()
         .name("bold")
         .description("makes it bold")
         .defaultValue(false)
-        .build()
-    );
+        .build());
 
     private final Setting<Boolean> italic = sgGeneral.add(new BoolSetting.Builder()
         .name("italics")
         .description("is it italic")
         .defaultValue(false)
-        .build()
-    );
+        .build());
 
     private final Setting<Boolean> underline = sgGeneral.add(new BoolSetting.Builder()
         .name("underline")
         .description("underline")
         .defaultValue(false)
-        .build()
-    );
+        .build());
 
     private final Setting<Boolean> obf = sgGeneral.add(new BoolSetting.Builder()
         .name("obfuscate")
         .description("makes it into the allah language")
         .defaultValue(false)
-        .build()
-    );
+        .build());
 
     private final Setting<Boolean> str = sgGeneral.add(new BoolSetting.Builder()
         .name("strikethrough")
         .description("i didnt even know this existed")
         .defaultValue(false)
-        .build()
-    );
+        .build());
 
     public Printer() {
         super(Allah.CATEGORY, "printer", "inshallah it sends a message from the heavens");

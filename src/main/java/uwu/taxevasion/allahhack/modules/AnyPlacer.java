@@ -2,9 +2,7 @@ package uwu.taxevasion.allahhack.modules;
 
 import net.minecraft.item.SpawnEggItem;
 import uwu.taxevasion.allahhack.Allah;
-import meteordevelopment.meteorclient.settings.BoolSetting;
-import meteordevelopment.meteorclient.settings.Setting;
-import meteordevelopment.meteorclient.settings.SettingGroup;
+import meteordevelopment.meteorclient.settings.*;
 import meteordevelopment.meteorclient.systems.modules.Module;
 import meteordevelopment.orbit.EventHandler;
 import meteordevelopment.meteorclient.events.meteor.MouseButtonEvent;
@@ -27,8 +25,7 @@ public class AnyPlacer extends Module {
         .name("fluid-place")
         .description("Places on fluids.")
         .defaultValue(true)
-        .build()
-    );
+        .build());
 
     public AnyPlacer() {
         super(Allah.CATEGORY, "anyplacer", "allah gifts you to place spawn eggs with infinite reach in creative");
